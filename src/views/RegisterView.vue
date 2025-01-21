@@ -11,6 +11,7 @@
             <input type="password" id="password" v-model="password" placeholder="Introduce una contraseña" required>
         </div>
         <button type="submit">Registrarse</button>
+        <p>Ya tienes cuenta <router-link to="/login">Iniciar sesión</router-link></p>
     </form>
   </section>
 </template>
