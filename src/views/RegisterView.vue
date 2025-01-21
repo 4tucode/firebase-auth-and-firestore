@@ -35,7 +35,7 @@ export default {
                 console.log("Usuario creado: ", user);
 
                 // Redirigir al perfil de usuario
-                
+                this.$router.push('/perfil')
             } catch (error) {
                 console.error("Error al registrar usuario: ", error.message)
                 alert(error.message)
