@@ -29,12 +29,7 @@ export default {
     methods:{
         async registerUser(){
             try {
-                // crear el usuario en firebase Auth
-                const userCredential = await createUserWithEmailAndPassword(auth, this.email, this.password)
-                const user = userCredential.user
-                console.log("Usuario creado: ", user);
-
-                // Redirigir al perfil de usuario
+                await createUserWithEmailAndPassword(auth, this.email, this.password)
                 this.$router.push('/perfil')
             } catch (error) {
                 console.error("Error al registrar usuario: ", error.message)

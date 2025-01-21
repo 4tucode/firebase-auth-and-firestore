@@ -7,7 +7,7 @@
 
 <script>
 import { auth } from "@/db/firebase"
-import { singOut } from 'firebase/auth'
+import { signOut } from 'firebase/auth'
 export default {
     name:'PerfilView',
     data(){
@@ -19,7 +19,7 @@ export default {
     },
     methods:{
         async logout(){
-            await singOut(auth)
+            await signOut(auth)
             this.$router.push('/')
         }
     },
