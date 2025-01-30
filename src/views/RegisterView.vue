@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="bg-red-500">
     <h2>Registro de Usuarios</h2>
-    <form @submit.prevent="registerUser">
+    <form @submit.prevent="registerUser" class="bg-[#123456]">
         <div>
             <label>Correo Electrónico</label>
             <input type="email" id="email" v-model="email" placeholder="Introduce tu email" required>
