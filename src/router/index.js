@@ -25,18 +25,19 @@ const router = createRouter({
 })
 
 router.beforeEach( (to, from, next) => {
+  // Busca de todas las rutas de mi aplicacion, la que requiere autenticacion
   const requiresAuth = to.matched.some((record) => record.meta.requiredAuth)
-  if (requiresAuth){
-    const unsubscribe = auth.onAuthStateChanged( (user) => {
-      if (user){
-        next() // el usuario está autenticado, permite la navegación
-      }else{
-        next({name: 'login'}) // lleva al login
-      }
-      unsubscribe()
-    })
-  }else{
-    next() // si la ruta no requiere autenticacion, permite la navegacion
-  }
+
+  // Controla el evento de si el estado del usuario cambia (autenticado/no autenticado)
+  const unsubscribe = auth.onAuthStateChanged( (user) =>{
+    if (requiresAuth && !user){
+      next({name: 'login'})
+    }else if (requiresAuth && user && !user.emailVerified){
+      next(false) 
+    }else{
+      next()
+    }
+    unsubscribe()
+  })
 })
 export default router

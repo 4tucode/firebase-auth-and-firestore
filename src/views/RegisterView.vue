@@ -18,7 +18,7 @@
 
 <script>
 import { auth } from "@/db/firebase"
-import { createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth"
 export default {
     name:'RegisterView',
     data(){
@@ -30,7 +30,10 @@ export default {
     methods:{
         async registerUser(){
             try {
-                await createUserWithEmailAndPassword(auth, this.email, this.password)
+                const userCredentials = await createUserWithEmailAndPassword(auth, this.email, this.password)
+                const user = userCredentials.user
+                sendEmailVerification(user)
+                alert ('Debes verificar tu cuenta. Revisa tu correo electrónico 👀')
                 this.$router.push('/perfil')
             } catch (error) {
                 console.error("Error al registrar usuario: ", error.message)

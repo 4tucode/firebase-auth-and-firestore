@@ -8,7 +8,7 @@
         <input type="text" v-model="profile.profession" placeholder="¿En qué trabajas?" required>
         <input type="number" v-model="profile.age" placeholder="Dinos tu edad" required>
         <input type="text" v-model="profile.currentCity" placeholder="¿En qué ciudad vives?">
-        <input type="text" v-model="profile.company" placeholder="¿Cuanto te mide?">
+        <input type="text" v-model="profile.company" placeholder="¿Dónde trabajas?">
         <textarea v-model="profile.bio" placeholder="Cuenta un poco sobre ti"></textarea>
         <h3>Motivaciones</h3>
         <div v-for="(motivation, index) in profile.motivations" :key="index">
@@ -109,6 +109,8 @@ export default {
     mounted(){
         this.user = auth.currentUser
         this.handleAuthStateChange()
+        console.log(this.user);
+        
     }
 
 }
